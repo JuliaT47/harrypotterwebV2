@@ -1,18 +1,10 @@
-import MainPage from "./MainPage";
-import StaffPage from "./StaffPage";
-import StudentsPage from "./StudentsPage";
-import CharactersPage from "./CharactersPage";
+import AppRouter from "./AppRouter";
 
 function App() {
   return (
-    <>
-      <div>
-        <MainPage />
-      </div>
-      <StudentsPage />
-      <StaffPage />
-      <CharactersPage />
-    </>
+    <div>
+      <AppRouter />
+    </div>
   );
 }
 
