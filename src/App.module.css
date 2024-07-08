@@ -388,8 +388,11 @@ p {
   align-items: center;
   gap: 10px;
 }
-.housesBtn:hover,
-.housesBtn:active {
+.housesBtn:hover {
+  background-color: #f9b50c;
+  color: #1d1d1d;
+}
+.active {
   background-color: #f9b50c;
   color: #1d1d1d;
 }
@@ -431,43 +434,6 @@ p {
   background-color: #1d1d1d;
   padding: 20px;
   border-radius: 20px;
-  transform: translateY(-20px);
-  opacity: 0;
-  transition:
-    transform 1s ease,
-    opacity 1s ease;
-}
-.modal.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-@keyframes modalOpen {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes modalClose {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-.modal.show {
-  animation: modalOpen 1s forwards;
-}
-
-.modal.hide {
-  animation: modalClose 1s forwards;
 }
 .hoverList {
   font-size: 14px;
@@ -477,4 +443,9 @@ p {
   font-size: 14px;
   color: #fabf59;
   text-transform: capitalize;
+}
+.following {
+  color: #fabf59;
+  text-align: center;
+  font-size: 50px;
 }

@@ -4,35 +4,22 @@ import charactersData from "./Characters.json";
 import { useCallback, useRef, useState } from "react";
 import HoverWindow from "./Hover.js";
 
-// const StaffPage = () => {
-//   const [hoverCharacter, setHoverCharacter] = useState(null);
-//   const hoverTimeout = useRef(null);
-
-//   const handleHover = (character) => {
-//     clearTimeout(hoverTimeout.current);
-//     setHoverCharacter(character);
-//   };
-
-//   const handleMouseLeave = useCallback(() => {
-//     hoverTimeout.current = setTimeout(() => {
-//       setHoverCharacter(null);
-//     }, 1500);
-//   }, []);
-
 const StaffPage = () => {
   const [hoverCharacter, setHoverCharacter] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const hoverTimeout = useRef(null);
 
   const handleHover = (character) => {
+    clearTimeout(hoverTimeout.current);
+    setIsHovering(true);
     setHoverCharacter(character);
-    setModalVisible(true); // Activate the modal visibility
   };
 
   const handleMouseLeave = () => {
-    setTimeout(() => {
-      setModalVisible(false); // Deactivate the modal visibility after delay
+    hoverTimeout.current = setTimeout(() => {
+      setIsHovering(false);
       setHoverCharacter(null);
-    }, 1000); // Adjust delay as needed to match your CSS animation duration
+    }, 1500);
   };
 
   return (
@@ -455,9 +442,9 @@ const StaffPage = () => {
           </div>
         </div>
       </div>
-      <div className={`modal ${modalVisible ? "show" : "hide"}`}>
-        {hoverCharacter && <HoverWindow character={hoverCharacter} />}
-      </div>
+      {isHovering && hoverCharacter && (
+        <HoverWindow character={hoverCharacter} onClose={handleMouseLeave} />
+      )}
     </>
   );
 };
